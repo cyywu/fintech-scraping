@@ -70,7 +70,7 @@ Below function is available when the server is on:
 | debug (customized function for developer) | http://localhost:4000/debug  |
 
 ## Build and Deploy (Front end)
-After every code is ready in `front end/src`, you may build its to optimized its size and script before it is deployed by running (in the `front end` folder)
+After every code is ready in `front end/src`, we first build an optimized version of it before it is deployed by running (in the `front end` folder)
 ```sh
 $ npm run build
 ```
