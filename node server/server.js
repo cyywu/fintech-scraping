@@ -8,16 +8,17 @@ const fs = require('fs');
 const app = express();
 app.use(cors())
 
-// requiring function defined in ./function.js
+// require function defined in ./function.js
 const { getBIS, getFCA, getMAS } = require('./function')
+
+// require secret in ./secret.js
+const {gmail_secret, firebase_secret } = require('./secret')
 
 // ---------------- Firebase set up -----------------------------
 const admin = require('firebase-admin');
 
-let serviceAccount = require('./fintechscraper-key.json');
-
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+    credential: admin.credential.cert(firebase_secret)
 });
 
 let db = admin.firestore();
@@ -28,8 +29,8 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'ffo201920@gmail.com',
-        pass: 'spqDUK2b'
+        user: gmail_secret.id,
+        pass: gmail_secret.pw
     }
 });
 

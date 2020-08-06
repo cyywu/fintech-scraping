@@ -11,6 +11,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+const { firebase_secret } = require('../secret')
 
 var dateFormat = require('dateformat');
 
@@ -18,12 +19,7 @@ var dateFormat = require('dateformat');
 const firebase = require('firebase/app');
 require('firebase/firestore');
 
-firebase.initializeApp({
-    apiKey: "AIzaSyAXi_X5zUczfBRS4N2Jgh1fuiF29b9_r2U",
-    authDomain: "fintech-scraping.firebaseapp.com",
-    databaseURL: "https://fintech-scraping.firebaseio.com",
-    projectId: "fintech-scraping",
-});
+firebase.initializeApp( firebase_secret );
 
 var db = firebase.firestore();
 let newsRef = db.collection('news');
@@ -132,19 +128,19 @@ class MotherWrapper extends Component {
                     let textLow = news.title.toLowerCase() + ' ' + news.article.toLowerCase()
                     let keywordList = []
                     this.state.keywordValue.forEach(key => {
-                        if(key.match(/[\u3400-\u9FBF]/)){
+                        if (key.match(/[\u3400-\u9FBF]/)) {
                             if (textLow.search(key) != -1) {
                                 // old search method, substring in string
                                 // use this method when chinese in keyword is recognized
                                 keywordList.push(key)
                             }
-                        }else{
+                        } else {
                             // new search method, word in string
                             if (findWord(key, textLow)) {
                                 keywordList.push(key)
                             }
                         }
-                    
+
                     })
 
                     if (this.state.keywordSearchMode == "OR") {
@@ -277,7 +273,7 @@ class MotherWrapper extends Component {
                     <Route path="/admin">
 
                         <AdminTabWrapper
-                
+
                         />
 
                     </Route>
