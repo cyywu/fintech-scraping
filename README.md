@@ -2,7 +2,7 @@
 
 [fintech-scraping.web.app](https://fintech-scraping.web.app/) 
 
-The app will retrieve news from global financial regulators, such as MAS and BIS, then fetch them into a firebase database.
+The app retrieve news from global financial regulators, such as MAS and BIS, then fetch them into a firebase database.
 
 You may:
   - browse the news database on a react web interface
@@ -69,7 +69,7 @@ Below function is available when the server is on:
 | check news count in the database | http://localhost:4000/checkNewsCount |
 | debug (customized function for developer) | http://localhost:4000/debug  |
 
-#### Build and Deploy for the front end
+## Build and Deploy (Front end)
 After every code is ready in `front end/src`, you may build its to optimized its size and script before it is deployed by running (in the `front end` folder)
 ```sh
 $ npm run build
