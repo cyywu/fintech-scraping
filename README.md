@@ -71,11 +71,13 @@ Below function is available when the server is on:
 
 ## Build and Deploy (Front end)
 After every code is ready in `front end/src`, we first build an optimized version of it before it is deployed by running (in the `front end` folder)
+
 ```sh
 $ npm run build
 ```
 
-You may expect files inside the `front end/build` folder is now updated. So now we deploy this folder using firebase hosting service by running (in the `front end` folder)
+You may expect a new folder `front end/build` is created and files are ready. So now we deploy this folder using firebase hosting service by running (in the `front end` folder)
+
 ```sh
 $ firebase deploy
 ```
