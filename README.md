@@ -40,7 +40,7 @@ You may expect a folder called `node_modules` in both `front end` & `node server
 $ cd front\ end/ 
 $ npm start
 ```
-
+(for missing secret.js file, please contact: yinyu@connect.hku.hk)
 Open a browser and access to [http://localhost:3000/](http://localhost:3000/), you can now play with the front end interface.
 
 Because it is a React project, you may only need to focus in the folder `front end/src`
@@ -50,6 +50,7 @@ Because it is a React project, you may only need to focus in the folder `front e
 $ cd node\ server/
 $ node server.js
 ```
+(for missing secret.js file, please contact: yinyu@connect.hku.hk)
 You may now interact with the server at [http://localhost:4000/](http://localhost:4000/)
 
 You may only need to focus on these files: 

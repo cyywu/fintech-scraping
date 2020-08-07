@@ -12,7 +12,7 @@ app.use(cors())
 const { getBIS, getFCA, getMAS } = require('./function')
 
 // require secret in ./secret.js
-const {gmail_secret, firebase_secret } = require('./secret')
+const { gmail_secret, firebase_secret } = require('./secret')
 
 // ---------------- Firebase set up -----------------------------
 const admin = require('firebase-admin');
@@ -161,7 +161,6 @@ app.get('/removeAllNewsFromMAS', async (req, res) => {
         () => { res.send("Deleted news from MAS") },
         () => { res.send("Fail deleting news from MAS") }
     )
-
 })
 
 app.get('/checkNewsCount', async (req, res) => {
@@ -554,6 +553,7 @@ app.get('/sendDailyBriefEmail', async (req, res) => {
 app.get('/debug', async (req, res) => {
     if (req.query.email != null) {
         console.log(req.query.email)
+        console.log()
     } else {
         console.log('no para')
     }
@@ -563,25 +563,17 @@ app.get('/debug', async (req, res) => {
 
 app.listen(4000);
 
-
-// 06 Aug 2020, trying to delete all the HK01 news from the data base
-
-// db.collection("news").where('source', '==', 'HK01').get()
-//     .then(
-//         (snapshot) => {
-//             // // When there are no documents left, we are done
-//             // if (snapshot.size === 0) {
-//             //     return 0;
-//             // }
-
-//             // // Delete documents in a batch
-//             // let batch = db.batch();
-//             // snapshot.docs.forEach((doc) => {
-//             //     batch.delete(doc.ref);
-//             // });
-
-//             // return batch.commit().then(() => {
-//             //     return snapshot.size;
-//             // });
-//         }
-//     )
+// 07 Aug 2020, trying to delete all the HK01 news from the data base
+db.collection("news").where('source', '==', 'HK01').get()
+    .then((snapshot) => {
+        // When there are no documents left, we are done
+        console.log('snapshot.size: ', snapshot.size)
+        
+        snapshot.docs.forEach((doc) => {
+            db.collection("news").doc(doc.id).delete().then(function () {
+                console.log("Document successfully deleted!");
+            }).catch(function (error) {
+                console.error("Error removing document: ", error);
+            });
+        });
+    })
